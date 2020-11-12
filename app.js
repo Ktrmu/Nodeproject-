@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const IndexRoute = require('./Routes/index');
 const ProductRoute = require('./Routes/products');
 const User = require('./Models/Users.Model');
-
+require('dotenv').config();
+const port = process.env.PORT || 5000;
 
 
 mongoose.connect('mongodb://localhost:nodedb',{ useNewUrlParser: true,useUnifiedTopology: true });
@@ -19,23 +20,20 @@ console.log('databse connected');
 
 const app = express()
 
-const user = new User({
-  name: 'Katuramu Curtis',
-  password: 12345,
-  email: 'curturamu@gmail.com'
-});
+// const user = new User({
+//   name: 'Katuramu Curtis',
+//   password: 12345,
+//   email: 'curturamu@gmail.com'
+// });
 
-user.save();
+// user.save();
 
-User.find((err, test)=>{
- if(err){
-   console.log(err)
- }
- else()=>{
-   console.log(test);
- }
-  console.log(test)
-});
+// User.find((err, test)=>{
+//  if(err){
+//    console.log(err)
+//  }
+//   console.log(test)
+// });
 
 
 // MiddleWare
@@ -48,10 +46,12 @@ app.use(express.json());
 
 app.use(express.urlencoded());
 
+app.use('/documentation',express.static('public'))
+
 app.get('/',(req, res)=>{
   res.send('I am Home page')
 });
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log(`App listening at http://localhost:5000`);
 })

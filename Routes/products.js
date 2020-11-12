@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     res.send('I am Products Home')
   });
 
-  router.get('/about', (req, res) => {
+router.get('/about', (req, res) => {
     res.send('I am Products About')
   });
 
