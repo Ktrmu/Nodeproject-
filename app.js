@@ -1,4 +1,17 @@
+//server
 const express = require('express');
+const app = express()
+
+app.listen(5000, () => {
+  console.log(`App listening at http://localhost:5000`);
+})
+
+//Routes //Controller
+app.get('/', (req, res) => {
+    res.send('Hello There!')
+  })
+
+//database
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:curtisdb',{ useNewUrlParser: true,useUnifiedTopology: true });
@@ -11,12 +24,5 @@ db.once('open',()=>{
 console.log('databse connected');
 });
 
-const app = express()
+//Models
 
-app.get('/', (req, res) => {
-  res.send('Hello There!')
-})
-
-app.listen(5000, () => {
-  console.log(`App listening at http://localhost:5000`);
-})
