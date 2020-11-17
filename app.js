@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const IndexRoute = require('./Routes/index');
 const ProductRoute = require('./Routes/products');
+const AuthRoute = require('./Routes/auth');
 const User = require('./Models/Users.Model');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
@@ -40,11 +41,13 @@ const app = express()
 
 app.use('/users',IndexRoute);
 
-app.use('/products',ProductRoute);
-
 app.use(express.json());
 
 app.use(express.urlencoded());
+
+app.use('/auth', AuthRoute);
+
+app.use('/products',ProductRoute);
 
 app.use('/documentation',express.static('public'))
 
