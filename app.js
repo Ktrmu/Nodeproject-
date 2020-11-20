@@ -1,4 +1,17 @@
+//server
 const express = require('express');
+const app = express()
+
+app.listen(5500, () => {
+  console.log(`App listening at http://localhost:5500`);
+})
+
+//Routes //Controller
+app.get('/', (req, res) => {
+    res.send('Hello There!')
+  })
+
+//database
 const mongoose = require('mongoose');
 const IndexRoute = require('./Routes/index');
 const ProductRoute = require('./Routes/products');
@@ -20,13 +33,21 @@ db.once('open',()=>{
 console.log('databse connected');
 });
 
-const app = express()
+//Models
+
 
 // const user = new User({
 //   name: 'Katuramu Curtis',
 //   password: 12345,
 //   email: 'curturamu@gmail.com'
 // });
+
+// const user = new User({
+//   name: 'Katuramu Curtis',
+//   password: 12345,
+//   email: 'curturamu@gmail.com'
+// });
+
 
 // user.save();
 
@@ -60,3 +81,4 @@ app.get('/',(req, res)=>{
 app.listen(port, () => {
   console.log(`App listening at http://localhost:5000`);
 })
+
