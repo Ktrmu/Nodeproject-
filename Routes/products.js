@@ -1,6 +1,9 @@
 const express = require('express');
+const { Mongoose } = require('mongoose');
 const Product = require('../Models/Products.Model');
 const router = express.Router();
+
+
 
 router.post('/addnewproduct', (req, res) => {
    
@@ -18,9 +21,17 @@ router.post('/addnewproduct', (req, res) => {
     }
    
   });
-router.get('/products', (req, res) => {
-    res.send('I am Products')
-});  
+
+  router.get('/getproducts', async (req, res)=> {
+    try {
+      const products = await Product.find();
+      res.json(products);
+    } 
+    catch (err) {
+      res.json({message: err})
+    }
+  });
+   
 
 router.get('/about', (req, res) => {
     res.send('I am Products About')

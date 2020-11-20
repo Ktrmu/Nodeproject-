@@ -22,4 +22,14 @@ router.post('/login', (req, res) => {
     res.send('Logged In')
   });
 
+  router.get('/users', async (req, res)=> {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } 
+    catch (err) {
+      res.json({message: err})
+    }
+  });
+
   module.exports = router;

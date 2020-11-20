@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- <script src="async.js"></script> -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+Float four columns side by side
+.column {
+  float: left; 
+  width: 25%;
+  padding: 0 10px;
+}
+
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+        width: 500px;
+      }</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <img src="expiry date.png" >
+    
+    <button id ='myBtn' onclick = 'fetchUsers()'>Click me</button>
+    <div id ='app'>
+
+    </div>
+<script>
+  
+    async function fetchUsers(){
+    const res = await fetch('http://localhost:5000/auth/users')
+    const data = await res.json();
+    console.log(data.name);
+    document.querySelector('#app').innerHTML = data.map((item)=>{
+        return `<div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>User</h3>
+      <p>UID: ${item._id}</P>
+      <p>Name: ${item.name}</p>
+      <p>Email: ${item.email}</p>
+    </div>
+  </div>`
+    })
+    }
+    document.querySelector('#app').innerHTML = data.asList(table);  
+</script>
 </body>
 </html>

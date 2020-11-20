@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const IndexRoute = require('./Routes/index');
 const ProductRoute = require('./Routes/products');
 const AuthRoute = require('./Routes/auth');
-const User = require('./Models/Users.Model');
+const UsersRoute = require('./Routes/users');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
+const cors = require('cors')
 
 
-mongoose.connect('mongodb://localhost:nodedb',{ useNewUrlParser: true,useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/test',{ useNewUrlParser: true,useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error',(error)=>{
 console.log('connection error');
@@ -38,8 +39,9 @@ const app = express()
 
 
 // MiddleWare
+app.use(cors());
 
-app.use('/users',IndexRoute);
+app.use('/user',IndexRoute);
 
 app.use(express.json());
 
